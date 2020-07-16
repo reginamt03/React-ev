@@ -1,0 +1,28 @@
+body
+{
+    width: 100%;
+    text-align: center;
+    background-color: snow;
+}
+
+.login
+{
+    margin-top: 5%;
+    margin-left: 30%;
+    align-items: center;
+    display: flex;
+}
+.logo
+{
+    width: 350px;
+    height: 350px;
+    align-self: center;
+}
+.bienvenido
+{
+    margin-top: 5%;
+    font-family: monospace;
+    font-size: 35px;
+    color: green;
+  
+}
