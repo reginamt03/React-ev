@@ -1,0 +1,30 @@
+.home-layout
+{
+    background-image: url(../Pictures/patas.jpg);
+    background-size: cover;
+}
+
+.body-layout
+{
+    margin-left: 3px;
+}
+
+.menu
+{
+    width: 100%;
+    text-align: left;
+    display: flex;
+}
+
+.menu div
+{
+    width: 50%;
+}
+
+.menu div button
+{
+    width: 30%;
+    text-align: center;
+    align-content: space-between;
+}
+
