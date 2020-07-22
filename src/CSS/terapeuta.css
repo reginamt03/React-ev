@@ -1,0 +1,22 @@
+.terapeuta-layout {
+  margin-left: 3px;
+  background-image: url(../Pictures/patas.jpg);
+}
+
+.header {
+  font-family: monospace;
+  font-size: 35px;
+  color: whitesmoke;
+}
+
+label {
+  color: whitesmoke;
+}
+
+th {
+  color: whitesmoke;
+}
+
+td {
+  color: whitesmoke;
+}
