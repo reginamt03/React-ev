@@ -1,58 +1,50 @@
 import React, { Component } from "react";
-import "../CSS/login.css";
 import logo from "../Pictures/logo.jpeg";
-import Home from "./Home.jsx";
-import ReactDOM from "react-dom";
-import { Link, NavLink, Route } from "react-router-dom";
 
 class Login extends Component {
   state = {};
-
   render() {
     return (
       <body>
-        <div>
-          <img className="logo" src={logo} alt="Logo"></img>
-        </div>
-        <div>
-          <h2 className="bienvenido">¡Bienvenido!</h2>
-        </div>
+        <form className="form-signin">
+          <div className="text-center mb-4">
+            <img className="logo" src={logo} alt="" width="200" height="200" />
+            <h1 className="h3 mb-3 font-weight-normal">Bienvenido</h1>
+          </div>
 
-        <div className="login">
-          <form className="form-inline">
-            <div className="form-group mx-sm-3 mb-2">
-              <label for="inputEmail2" className="sr-only">
-                Email
-              </label>
-              <input
-                type="text"
-                className="form-control-plaintext"
-                id="inputEmail2"
-                placeholder="User"
-              />
-            </div>
+          <div className="form-label-group">
+            <input
+              type="email"
+              id="inputEmail"
+              className="form-control"
+              placeholder="Email address"
+              required
+              autofocus
+            />
+            <label for="inputEmail">Email address</label>
+          </div>
 
-            <div className="form-group mx-sm-3 mb-2">
-              <label for="inputPassword2" className="sr-only">
-                Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="inputPassword2"
-                placeholder="Password"
-              />
-            </div>
+          <div className="form-label-group">
+            <input
+              type="password"
+              id="inputPassword"
+              className="form-control"
+              placeholder="Password"
+              required
+            />
+            <label for="inputPassword">Password</label>
+          </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary mb-2"
-              onClick={" "}
-            >
-              Login
-            </button>
-          </form>
-        </div>
+          <div className="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me" /> Remember me
+            </label>
+          </div>
+          <button className="btn btn-lg btn-primary btn-block" type="submit">
+            Sign in
+          </button>
+          <p className="mt-5 mb-3 text-muted text-center">&copy; 2017-2020</p>
+        </form>
       </body>
     );
   }
