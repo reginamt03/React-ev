@@ -1,27 +1,22 @@
-.paciente-layout
-{
-    margin-left: 3px;
-    background-image: url(../Pictures/EquinoTerapiaEffect2.jpg);
+.paciente-layout {
+  margin-left: 3px;
+  background-image: url(../Pictures/EquinoTerapiaEffect2.jpg);
 }
 
-.header
-{
-    font-family: monospace;
-    font-size: 35px;
-    color: whitesmoke;
+.header {
+  font-family: monospace;
+  font-size: 35px;
+  color: whitesmoke;
 }
 
-label
-{
-    color: whitesmoke;
+.label {
+  color: whitesmoke;
 }
 
-th
-{
-    color: whitesmoke;
+th {
+  color: whitesmoke;
 }
 
-td
-{
-    color: whitesmoke;
+td {
+  color: whitesmoke;
 }

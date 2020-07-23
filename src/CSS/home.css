@@ -1,6 +1,7 @@
 .home-layout {
   background-image: url(../Pictures/patas.jpg);
   background-size: 100%;
+  height: 700px;
 }
 .header {
   font-family: monospace;
