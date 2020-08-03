@@ -11,7 +11,7 @@ class Paciente extends Component {
         <NavBar />
         <h1 className="header">PACIENTES</h1>
         <MainData />
-        <MainTable />
+        <MainTable key={2} />
       </body>
     );
   }

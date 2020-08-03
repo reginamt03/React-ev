@@ -1,13 +1,6 @@
 const pacientes = [{}];
 
-export function getPacientes() {
-  fetch("https://localhost:44333/api/Vista1/GetPaciente")
-    .then((res) => res.json())
-    .then((data) => {
-      this.setState({ pacientes: data });
-    });
-  return pacientes;
-}
+export function getPacientes() {}
 
 export function getPaciente(id) {
   return pacientes.find((p) => p.id === pacientes.id);
@@ -31,7 +24,6 @@ export function savePaciente(paciente) {
 }
 
 export function deletePaciente(id) {
-  let pacienteDb = pacientes.find((p) => p.id === id);
-  pacientes.splice(pacientes.indexOf(pacienteDb), 1);
-  return pacienteDb;
+  fetch("https://localhost:44333/api/Paciente/", { id });
+  console.log(pacientes);
 }
