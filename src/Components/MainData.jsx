@@ -78,17 +78,17 @@ class MainData extends Component {
           </div>
         </div>
 
-        <div class="bd-example">
-          <button type="button" class="btn btn-outline-warning">
+        <div className="bd-example">
+          <button type="button" className="btn btn-outline-warning">
             Nuevo
           </button>
-          <button type="button" class="btn btn-outline-warning">
+          <button type="button" className="btn btn-outline-warning">
             Agregar
           </button>
-          <button type="button" class="btn btn-outline-warning">
+          <button type="button" className="btn btn-outline-warning">
             Modificar
           </button>
-          <button type="button" class="btn btn-outline-warning">
+          <button type="button" className="btn btn-outline-warning">
             Eliminar
           </button>
         </div>

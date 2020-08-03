@@ -1,14 +1,36 @@
 import React, { Component } from "react";
-import { getPacientes } from "./../Object/Paciente";
+import { deletePaciente } from "../Object/Paciente";
 
 class MainTable extends Component {
   state = {
-    pacientes: getPacientes(),
+    pacientes: [
+      {
+        IdPaciente: Number,
+        Nombre: Text,
+        ApellidoPaterno: Text,
+        ApellidoMaterno: Text,
+        Telefono: Text,
+        FechaNacimiento: Date,
+        FechaInscripcion: Date,
+      },
+    ],
   };
+  componentWillMount() {
+    fetch("https://localhost:44333/api/Paciente")
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ pacientes: data });
+      });
+  }
 
   handleDelete = (paciente) => {
-    const pacientes = this.state.pacientes.filter((p) => p.id !== paciente.id);
+    const pacientes = this.state.pacientes.filter(
+      (p) => p.IdPaciente !== paciente.IdPaciente
+    );
+    console.log(paciente);
+    deletePaciente(pacientes.IdPaciente);
     this.setState({ pacientes });
+    this.componentWillMount();
   };
 
   render() {
@@ -35,12 +57,12 @@ class MainTable extends Component {
 
           <tbody>
             {this.state.pacientes.map((paciente) => (
-              <tr key={paciente.id}>
-                <td>{paciente.id}</td>
-                <td>{paciente.nombre}</td>
-                <td>{paciente.apPaterno}</td>
-                <td>{paciente.apMaterno}</td>
-                <td>{paciente.telefono}</td>
+              <tr key={paciente.IdPaciente}>
+                <td>{paciente.IdPaciente}</td>
+                <td>{paciente.Nombre}</td>
+                <td>{paciente.ApellidoPaterno}</td>
+                <td>{paciente.ApellidoMaterno}</td>
+                <td>{paciente.Telefono}</td>
                 <td>{paciente.FechaNacimiento}</td>
                 <td>{paciente.FechaInscripcion}</td>
                 <td>
