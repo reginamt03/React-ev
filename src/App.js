@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Pacientes from "./Views/Pacientes";
+import Pacientes from "./Components/pacientes";
 import Login from "./Views/Login";
 import Home from "./Views/Home";
 import Terapeutas from "./Views/Terapeutas";

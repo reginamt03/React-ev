@@ -1,29 +1,25 @@
 import React, { Component } from "react";
 
-const getPacientes = () => {
-  var datos;
-  setTimeout(() => {
-    fetch("https://localhost:44333/api/Paciente")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("then", data);
-        datos = data;
-        console.log("datos", datos);
-      });
-  }, 1000);
-  return datos;
-};
+// const getPacientes = () => {
+//   var datos;
+//   setTimeout(() => {
+//     fetch("https://localhost:44333/api/Paciente")
+//       .then((res) => res.json())
+//       .then((data) => {
+//         console.log("then", data);
+//         datos = data;
+//         console.log("datos", datos);
+//       });
+//   }, 1000);
+//   return datos;
+// };
 
 function deletePaciente(id) {
   console.log("id", id);
   const deleteOption = {
     method: "DELETE",
   };
-  fetch(`https://localhost:44333/api/Paciente/${id}`, deleteOption)
-    .then((response) => response.json())
-    .then(() => {
-      return "true";
-    });
+  fetch(`https://localhost:44333/api/Paciente/${id}`, deleteOption);
 }
 
 class MainTable extends Component {

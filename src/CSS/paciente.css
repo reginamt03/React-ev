@@ -6,10 +6,10 @@
 .header {
   font-family: monospace;
   font-size: 35px;
-  color: whitesmoke;
+  /* color: whitesmoke; */
 }
 
-.label {
+/* .label {
   color: whitesmoke;
 }
 
@@ -19,4 +19,4 @@ th {
 
 td {
   color: whitesmoke;
-}
+} */
