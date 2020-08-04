@@ -1,5 +1,30 @@
 import React, { Component } from "react";
-import { deletePaciente } from "../Object/Paciente";
+
+const getPacientes = () => {
+  var datos;
+  setTimeout(() => {
+    fetch("https://localhost:44333/api/Paciente")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("then", data);
+        datos = data;
+        console.log("datos", datos);
+      });
+  }, 1000);
+  return datos;
+};
+
+function deletePaciente(id) {
+  console.log("id", id);
+  const deleteOption = {
+    method: "DELETE",
+  };
+  fetch(`https://localhost:44333/api/Paciente/${id}`, deleteOption)
+    .then((response) => response.json())
+    .then(() => {
+      return "true";
+    });
+}
 
 class MainTable extends Component {
   state = {
@@ -15,10 +40,12 @@ class MainTable extends Component {
       },
     ],
   };
+
   componentWillMount() {
     fetch("https://localhost:44333/api/Paciente")
       .then((res) => res.json())
       .then((data) => {
+        console.log("then", data);
         this.setState({ pacientes: data });
       });
   }
@@ -27,10 +54,10 @@ class MainTable extends Component {
     const pacientes = this.state.pacientes.filter(
       (p) => p.IdPaciente !== paciente.IdPaciente
     );
-    console.log(paciente);
-    deletePaciente(pacientes.IdPaciente);
+
+    console.log("delete data", paciente.IdPaciente);
+    deletePaciente(paciente.IdPaciente);
     this.setState({ pacientes });
-    this.componentWillMount();
   };
 
   render() {
