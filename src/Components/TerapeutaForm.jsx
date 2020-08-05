@@ -1,10 +1,10 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "../Common/form";
-import { savePaciente, getPaciente } from "./../Services/PacienteService";
+import { saveTerapeuta, getTerapeuta } from "../Services/TerapeutaService";
 import NavBar from "./NavBar";
 
-class PacienteForm extends Form {
+class TerapeutaForm extends Form {
   state = {
     data: {
       nombre: "",
@@ -17,7 +17,7 @@ class PacienteForm extends Form {
   };
 
   schema = {
-    idPaciente: Joi.number(),
+    idTerapeuta: Joi.number(),
     nombre: Joi.string().required().label("Nombre"),
     apellidoPaterno: Joi.string().required().label("Apellido Paterno"),
     apellidoMaterno: Joi.string().required().label("Apellido Materno"),
@@ -29,13 +29,13 @@ class PacienteForm extends Form {
     fechaNacimiento: Joi.date().required().label("Fecha de Nacimiento"),
   };
 
-  async populatePaciente() {
+  async populateTerapeuta() {
     try {
-      const idPaciente = this.props.match.params.id;
-      if (idPaciente === 0) return;
+      const idTerapeuta = this.props.match.params.id;
+      if (idTerapeuta === 0) return;
 
-      const { data: paciente } = await getPaciente(idPaciente);
-      this.setState({ data: this.mapToViewModel(paciente) });
+      const { data: terapeuta } = await getTerapeuta(idTerapeuta);
+      this.setState({ data: this.mapToViewModel(terapeuta) });
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
         this.props.history.replace("/not-found");
@@ -43,25 +43,25 @@ class PacienteForm extends Form {
   }
 
   async componentDidMount() {
-    await this.populatePaciente();
+    await this.populateTerapeuta();
   }
 
-  mapToViewModel(paciente) {
+  mapToViewModel(terapeuta) {
     return {
-      idPaciente: paciente.IdPaciente,
-      nombre: paciente.Nombre,
-      apellidoPaterno: paciente.ApellidoPaterno,
-      apellidoMaterno: paciente.ApellidoMaterno,
-      telefono: paciente.Telefono,
-      fechaNacimiento: paciente.FechaNacimiento,
+      idTerapeuta: terapeuta.IdTerapeuta,
+      nombre: terapeuta.Nombre,
+      apellidoPaterno: terapeuta.ApellidoPaterno,
+      apellidoMaterno: terapeuta.ApellidoMaterno,
+      telefono: terapeuta.Telefono,
+      fechaNacimiento: terapeuta.FechaNacimiento,
     };
   }
 
   doSubmit = async () => {
-    await savePaciente(this.state.data);
-    alert("Paciente guardado exitosamente");
+    await saveTerapeuta(this.state.data);
+    alert("Terapeuta guardado exitosamente");
 
-    this.props.history.push("/pacientes");
+    this.props.history.push("/terapeutas");
   };
 
   render() {
@@ -69,7 +69,7 @@ class PacienteForm extends Form {
       <React.Fragment>
         <NavBar />
         <div>
-          <h1>Pacientes</h1>
+          <h1>Terapeutas</h1>
           <form onSubmit={this.handleSubmit}>
             {this.renderInput("nombre", "Nombre", "text")}
             {this.renderInput("apellidoPaterno", "Apellido Paterno", "text")}
@@ -84,4 +84,4 @@ class PacienteForm extends Form {
   }
 }
 
-export default PacienteForm;
+export default TerapeutaForm;

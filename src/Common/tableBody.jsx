@@ -14,8 +14,6 @@ class TableBody extends Component {
 
   render() {
     const { data, columns } = this.props;
-    console.log("dataTable", data, " columnas", columns);
-
     return (
       <tbody>
         {data.map((item) => (
