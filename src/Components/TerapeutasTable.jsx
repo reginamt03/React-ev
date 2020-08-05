@@ -2,18 +2,18 @@ import React, { Component } from "react";
 import Table from "../Common/table";
 import { Link } from "react-router-dom";
 
-class PacientesTable extends Component {
+class TerapeutasTable extends Component {
   columns = [
     {
-      path: "IdPaciente",
+      path: "IdTerapeuta",
       label: "Id",
     },
     {
       path: "Nombre",
       label: "Nombre",
-      content: (paciente) => (
-        <Link to={`/pacientes/new/${paciente.IdPaciente}`}>
-          {paciente.Nombre}
+      content: (terapeuta) => (
+        <Link to={`/terapeutas/new/${terapeuta.IdTerapeuta}`}>
+          {terapeuta.Nombre}
         </Link>
       ),
     },
@@ -30,9 +30,9 @@ class PacientesTable extends Component {
 
     {
       key: "delete",
-      content: (paciente) => (
+      content: (terapeuta) => (
         <button
-          onClick={() => this.props.onDelete(paciente)}
+          onClick={() => this.props.onDelete(terapeuta)}
           className="btn btn-danger btn-sm"
         >
           Delete
@@ -42,12 +42,12 @@ class PacientesTable extends Component {
   ];
 
   render() {
-    const { pacientes, onSort, sortColumn } = this.props;
+    const { terapeutas, onSort, sortColumn } = this.props;
 
     return (
       <Table
         columns={this.columns}
-        data={pacientes}
+        data={terapeutas}
         sortColumn={sortColumn}
         onSort={onSort}
       />
@@ -55,4 +55,4 @@ class PacientesTable extends Component {
   }
 }
 
-export default PacientesTable;
+export default TerapeutasTable;

@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import PacientesTable from "./PacientesTable";
 import _ from "lodash";
 import SearchBox from "./searchBox";
-import { deletePaciente, getPacientes } from "../Services/PacienteService";
-import { paginate } from "./../Services/paginate";
+import { paginate } from "../Services/paginate";
 import Pagination from "./pagination";
 import NavBar from "./NavBar";
+import { getTerapeutas, deleteTerapeuta } from "./../Services/TerapeutaService";
+import TerapeutasTable from "./TerapeutasTable";
 
-class Pacientes extends Component {
+class Terapeutas extends Component {
   state = {
-    pacientes: [],
+    terapeutas: [],
     currentPage: 1,
     pageSize: 4,
     searchQuery: "",
@@ -18,25 +18,25 @@ class Pacientes extends Component {
   };
 
   async componentDidMount() {
-    const { data: pacientes } = await getPacientes();
-    this.setState({ pacientes });
+    const { data: terapeutas } = await getTerapeutas();
+    this.setState({ terapeutas });
   }
 
-  handleDelete = async (paciente) => {
-    const originalPacientes = this.state.pacientes;
-    const pacientes = originalPacientes.filter(
-      (p) => p.idPaciente !== paciente.IdPaciente
+  handleDelete = async (terapeuta) => {
+    const originalTerapeutas = this.state.terapeutas;
+    const terapeutas = originalTerapeutas.filter(
+      (t) => t._id !== terapeuta.IdTerapeuta
     );
-    this.setState({ pacientes });
+    this.setState({ terapeutas });
 
     try {
-      await deletePaciente(paciente.IdPaciente);
-      alert("Paciente eliminado correctamente");
+      await deleteTerapeuta(terapeuta.IdTerapeuta);
+      alert("Terapeuta eliminado correctamente");
     } catch (ex) {
       if (ex.response && ex.response.status === 404) {
         console.log("x");
-        alert("Este paciente no se puede eliminar");
-        this.setState({ pacientes: originalPacientes });
+        alert("Este Terapeuta no se puede eliminar");
+        this.setState({ terapeutas: originalTerapeutas });
       }
     }
   };
@@ -59,47 +59,46 @@ class Pacientes extends Component {
       currentPage,
       sortColumn,
       searchQuery,
-      pacientes: allPacientes,
+      terapeutas: allTerapeutas,
     } = this.state;
 
-    let filtered = allPacientes;
+    let filtered = allTerapeutas;
     if (searchQuery)
-      filtered = allPacientes.filter((p) =>
-        p.Nombre.toLowerCase().startsWith(searchQuery.toLowerCase())
+      filtered = allTerapeutas.filter((t) =>
+        t.Nombre.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
-    const pacientes = paginate(sorted, currentPage, pageSize);
+    const terapeutas = paginate(sorted, currentPage, pageSize);
 
-    return { totalCount: filtered.length, data: pacientes };
+    return { totalCount: filtered.length, data: terapeutas };
   };
 
   render() {
-    const { length: count } = this.state.pacientes;
+    const { length: count } = this.state.terapeutas;
     const { sortColumn, searchQuery, pageSize, currentPage } = this.state;
 
-    if (count === 0) return <p>No hay pacientes en la tabla.</p>;
+    if (count === 0) return <p>No hay terapeutas en la tabla.</p>;
 
-    const { totalCount, data: pacientes } = this.getPagedData();
+    const { totalCount, data: terapeutas } = this.getPagedData();
 
     return (
       <React.Fragment>
         <NavBar />
-        <h1>Pacientes</h1>
         <div className="row">
           <div className="col">
             <Link
-              to="/pacientes/new/0"
+              to="/terapeutas/new/0"
               className="btn btn-primary"
               style={{ marginBottom: 20 }}
             >
-              Nuevo Paciente
+              Nuevo Terapeuta
             </Link>
             <p>Mostrando {totalCount} pacientes en la base de datos.</p>
             <SearchBox value={searchQuery} onChange={this.handleSearch} />
-            <PacientesTable
-              pacientes={pacientes}
+            <TerapeutasTable
+              terapeutas={terapeutas}
               sortColumn={sortColumn}
               onDelete={this.handleDelete}
               onSort={this.handleSort}
@@ -117,4 +116,4 @@ class Pacientes extends Component {
   }
 }
 
-export default Pacientes;
+export default Terapeutas;
