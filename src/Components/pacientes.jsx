@@ -6,6 +6,7 @@ import SearchBox from "./searchBox";
 import { deletePaciente, getPacientes } from "../Services/PacienteService";
 import { paginate } from "./../Services/paginate";
 import Pagination from "./pagination";
+import NavBar from "./NavBar";
 
 class Pacientes extends Component {
   state = {
@@ -65,8 +66,8 @@ class Pacientes extends Component {
 
     let filtered = allPacientes;
     if (searchQuery)
-      filtered = allPacientes.filter((m) =>
-        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+      filtered = allPacientes.filter((p) =>
+        p.Nombre.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
@@ -85,31 +86,34 @@ class Pacientes extends Component {
     const { totalCount, data: pacientes } = this.getPagedData();
 
     return (
-      <div className="row">
-        <div className="col">
-          <Link
-            to="/pacientes/new"
-            className="btn btn-primary"
-            style={{ marginBottom: 20 }}
-          >
-            Nuevo Paciente
-          </Link>
-          <p>Mostrando {totalCount} pacientes en la base de datos.</p>
-          <SearchBox value={searchQuery} onChange={this.handleSearch} />
-          <PacientesTable
-            pacientes={pacientes}
-            sortColumn={sortColumn}
-            onDelete={this.handleDelete}
-            onSort={this.handleSort}
-          />
-          <Pagination
-            itemsCount={totalCount}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={this.handlePageChange}
-          />
+      <React.Fragment>
+        <NavBar />
+        <div className="row">
+          <div className="col">
+            <Link
+              to="/pacientes/new"
+              className="btn btn-primary"
+              style={{ marginBottom: 20 }}
+            >
+              Nuevo Paciente
+            </Link>
+            <p>Mostrando {totalCount} pacientes en la base de datos.</p>
+            <SearchBox value={searchQuery} onChange={this.handleSearch} />
+            <PacientesTable
+              pacientes={pacientes}
+              sortColumn={sortColumn}
+              onDelete={this.handleDelete}
+              onSort={this.handleSort}
+            />
+            <Pagination
+              itemsCount={totalCount}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={this.handlePageChange}
+            />
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
