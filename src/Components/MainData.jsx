@@ -21,7 +21,7 @@ class MainData extends Component {
             <input
               type="text"
               className="form-control is-valid"
-              id="nombrePaciente"
+              to="nombrePaciente"
               placeholder="Andrea"
               required
             />
@@ -32,7 +32,7 @@ class MainData extends Component {
             <input
               type="text"
               className="form-control is-valid"
-              id="apPaterno"
+              to="apPaterno"
               placeholder="Carrillo"
             />
           </div>
@@ -42,7 +42,7 @@ class MainData extends Component {
             <input
               type="text"
               className="form-control is-valid"
-              id="apMaterno"
+              to="apMaterno"
               placeholder="Pérez"
             />
           </div>
@@ -52,7 +52,7 @@ class MainData extends Component {
             <input
               type="text"
               className="form-control is-valid"
-              id="telefono"
+              to="telefono"
               placeholder="3318925007"
             />
           </div>
@@ -64,7 +64,7 @@ class MainData extends Component {
             <input
               type="date"
               className="form-control is-valid"
-              id="fechaNacimiento"
+              to="fechaNacimiento"
             />
           </div>
 
@@ -73,7 +73,7 @@ class MainData extends Component {
             <input
               type="date"
               className="form-control is-valid"
-              id="fechaInscripcion"
+              to="fechaInscripcion"
             />
           </div>
         </div>
