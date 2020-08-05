@@ -6,12 +6,13 @@ import Select from "./select";
 class Form extends Component {
   state = {
     data: {},
-    errors: {}
+    errors: {},
   };
 
   validate = () => {
     const options = { abortEarly: false };
     const { error } = Joi.validate(this.state.data, this.schema, options);
+    console.log("this is validate error: ", error);
     if (!error) return null;
 
     const errors = {};
@@ -26,7 +27,7 @@ class Form extends Component {
     return error ? error.details[0].message : null;
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const errors = this.validate();
@@ -82,6 +83,20 @@ class Form extends Component {
         label={label}
         onChange={this.handleChange}
         error={errors[name]}
+      />
+    );
+  }
+  renderCalendar(name, label) {
+    const { data, errors } = this.state;
+    return (
+      <Input
+        name={name}
+        label={label}
+        value={data[name]}
+        onChange={this.handleChange}
+        error={errors[name]}
+        type="date"
+        className="form-control"
       />
     );
   }

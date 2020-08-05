@@ -7,6 +7,10 @@ function pacienteUrl(id) {
   return `${apiEndpoint}/${id}`;
 }
 
+function nuevoPacienteUrl(nombre, aP, aM, tel, fecha) {
+  return `${apiEndpoint}/new?n=${nombre}&apP=${aP}&apM=${aM}&tel=${tel}&fn=${fecha}`;
+}
+
 export function getPacientes() {
   return http.get(apiEndpoint);
 }
@@ -16,13 +20,14 @@ export function getPaciente(pacienteId) {
 }
 
 export function savePaciente(paciente) {
-  if (paciente._id) {
-    const body = { ...paciente };
-    delete body._id;
-    return http.put(pacienteUrl(paciente._id), body);
-  }
-
-  return http.post(apiEndpoint, paciente);
+  const nuevaUrl = nuevoPacienteUrl(
+    paciente.nombre,
+    paciente.apellidoPaterno,
+    paciente.apellidoMaterno,
+    paciente.telefono,
+    paciente.fechaNacimiento
+  );
+  return http.put(nuevaUrl);
 }
 
 export function deletePaciente(pacienteId) {
