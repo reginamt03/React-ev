@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-//import ReactDom from 'react-dom';
-//import logo from '../Pictures/logo.jpeg'
 import "../CSS/paciente.css";
 import NavBar from "../Components/NavBar";
-import MainData from "../Components/MainData";
-import MainTable from "../Components/MainTable";
+import PacienteForm from "../Components/PacienteForm";
+import PacientesTable from "../Components/PacientesTable";
 
 class Paciente extends Component {
   state = {};
@@ -20,8 +18,8 @@ class Paciente extends Component {
       <body className="paciente-layout">
         <NavBar />
         <h1 className="header">TERAPEUTAS</h1>
-        <MainData />
-        <MainTable />
+        <PacienteForm />
+        <PacientesTable />
       </body>
     );
   }

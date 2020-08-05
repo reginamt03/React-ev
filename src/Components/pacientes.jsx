@@ -39,8 +39,6 @@ class Pacientes extends Component {
         this.setState({ pacientes: originalPacientes });
       }
     }
-
-    console.log("nuevaLista", this.state.pacientes);
   };
 
   handlePageChange = (page) => {
